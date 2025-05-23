@@ -30,7 +30,7 @@ export default function Workout({ title, description, time, onComplete }) {
 			<p>{time}</p>
 			<p>
 				<button
-					className={timerRunning ? 'active' : undefined}
+					className={timerRunning && 'active'}
 					onClick={handleStartWorkout}
 				>
 					Start
