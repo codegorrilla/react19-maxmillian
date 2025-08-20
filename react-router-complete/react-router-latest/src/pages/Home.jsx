@@ -4,13 +4,13 @@ export default function HomePage() {
 	const navigate = useNavigate();
 
 	function handleClick() {
-		navigate('/about');
+		navigate('about');
 	}
 	return (
 		<main>
 			<h1>Home page</h1>
 			<p>
-				Visit our <Link to='/about'>about</Link> page.
+				Visit our <Link to='about'>about</Link> page.
 			</p>
 			<p>
 				Click the <button onClick={handleClick}>button</button> to visit the
