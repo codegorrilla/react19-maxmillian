@@ -1,6 +1,34 @@
 {
   "opinions": [
     {
+      "id": 1759723868031,
+      "votes": 0,
+      "userName": "Sanjib",
+      "title": "Nice tuts",
+      "body": "This is awesome form actions tuts."
+    },
+    {
+      "id": 1759722374351,
+      "votes": 0,
+      "userName": "Sanjib",
+      "title": "Another comment",
+      "body": "A demo comment."
+    },
+    {
+      "id": 1759647850282,
+      "votes": 3,
+      "userName": "Sanjib",
+      "title": "Another praise",
+      "body": "This is an awesome tutorial course on React development."
+    },
+    {
+      "id": 1759645936956,
+      "votes": 2,
+      "userName": "Sanjib",
+      "title": "Inspirational React lessons",
+      "body": "This is really good and informative."
+    },
+    {
       "id": 1,
       "userName": "Maximilian Schwarzmüller",
       "title": "Do yourself a favor and learn React!",

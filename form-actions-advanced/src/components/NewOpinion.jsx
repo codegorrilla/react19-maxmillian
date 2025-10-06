@@ -1,44 +1,51 @@
-import { useActionState } from 'react';
-
-function shareOpinionAction(prevFormState, formData) {
-	const title = formData.get('title');
-	const body = formData.get('body');
-	const userName = formData.get('userName');
-
-	let errors = [];
-
-	if (title.trim().length < 5) {
-		errors.push('Title must be at least fie characters long.');
-	}
-
-	if (body.trim().length < 10 || body.trim().length > 300) {
-		errors.push('Opinion must be between 10 and 300 characters long.');
-	}
-
-	if (!userName.trim()) {
-		errors.push('Please provide your name.');
-	}
-
-	if (errors.length > 0) {
-		return {
-			errors,
-			enteredValues: {
-				title,
-				body,
-				userName,
-			},
-		};
-	}
-
-	//submit to backend
-
-	return { errors: null };
-}
+import { useActionState, use } from 'react';
+import { OpinionsContext } from '../store/opinions-context';
+import Submit from './Submit';
 
 export function NewOpinion() {
 	const [formState, formAction] = useActionState(shareOpinionAction, {
 		errors: null,
 	});
+
+	const { addOpinion } = use(OpinionsContext);
+
+	async function shareOpinionAction(prevFormState, formData) {
+		const title = formData.get('title');
+		const body = formData.get('body');
+		const userName = formData.get('userName');
+
+		let errors = [];
+
+		if (title.trim().length < 5) {
+			errors.push('Title must be at least fie characters long.');
+		}
+
+		if (body.trim().length < 10 || body.trim().length > 300) {
+			errors.push('Opinion must be between 10 and 300 characters long.');
+		}
+
+		if (!userName.trim()) {
+			errors.push('Please provide your name.');
+		}
+
+		if (errors.length > 0) {
+			return {
+				errors,
+				enteredValues: {
+					title,
+					body,
+					userName,
+				},
+			};
+		}
+
+		//submit to backend
+
+		await addOpinion({ title, body, userName });
+
+		return { errors: null };
+	}
+
 	return (
 		<div id='new-opinion'>
 			<h2>Share your opinion!</h2>
@@ -82,9 +89,7 @@ export function NewOpinion() {
 					</ul>
 				)}
 
-				<p className='actions'>
-					<button type='submit'>Submit</button>
-				</p>
+				<Submit />
 			</form>
 		</div>
 	);
